@@ -81,7 +81,7 @@ playerManager.setMessageInterceptor(
         return request;
     });
 
-const CUSTOM_CHANNEL = 'urn:x-cast:com.wonny.ScreenSharing';
+const CUSTOM_CHANNEL = 'urn:x-cast:com.mirroring.screen.sharing';
 context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
     console.log('EVENT: ' + JSON.stringify(customEvent, null, 2));
     if (!customEvent.data || !customEvent.data.type) {
