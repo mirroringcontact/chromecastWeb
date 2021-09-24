@@ -55,9 +55,8 @@ let imageControl = (function() {
             self.stopStream();
             return;
         }
-
-        let currentTime = (new Date().getTime()) / 1000;
-        let url = self.streamUrl + 'time=' + currentTime
+ 
+        let url = self.streamUrl + 'time=1' 
         self.setImgSrc(url);
 
         if (self.streamTimeout !== null) {
