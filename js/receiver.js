@@ -24,6 +24,7 @@ let imageControl = (function() {
 
     self.streamUrl = null;
     self.streamErrors = 0;
+    self.currentIndex = 0;
     self.streamTimeout = null;
 
     self.startStream = function(url) {
@@ -55,8 +56,9 @@ let imageControl = (function() {
             self.stopStream();
             return;
         }
- 
-        let url = self.streamUrl + 'time=1' 
+
+        ++self.currentIndex;
+        let url = self.streamUrl + 'time=' + self.currentIndex
         self.setImgSrc(url);
 
         if (self.streamTimeout !== null) {
