@@ -7,6 +7,20 @@ let playerManagerStop = function() {
     }
 };
 
+let youtubeControl = (function() {
+    let self = {};
+
+    self.setVideoId = function (videoId) {
+        var content = document.getElementById('iframe').contentWindow.document; 
+        content.body.innerHTML = '<html><iframe width="413" height="231" src="https://www.youtube.com/embed/' + videoId + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></html>';
+    }
+
+    self.clearContent = function () {
+        var content = document.getElementById('iframe').contentWindow.document;
+        content.body.innerHTML = "";  
+    } 
+}) ();
+
 let imageControl = (function() {
     let self = {};
     self.$image = document.getElementById('image');
@@ -79,6 +93,7 @@ playerManager.setMessageInterceptor(
         console.log('request: ' + JSON.stringify(request, null, 2));
         imageControl.stopStream();
         imageControl.clearImg();
+        youtubeControl.clearContent();
         return request;
     });
 
@@ -93,11 +108,14 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
     let url = customEvent.data.url || '';
     switch (true) {
         case type.indexOf('image') === 0:
+            youtubeControl.clearContent();
             imageControl.stopStream();
             playerManagerStop();
+            youtubeControl.clearContent();
             imageControl.setImgSrc(url);
             break;
         case type === 'stream':
+            youtubeControl.clearContent();
             playerManagerStop();
             imageControl.startStream(url);
             break;
@@ -105,6 +123,13 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
             imageControl.stopStream();
             imageControl.clearImg();
             playerManagerStop();
+            youtubeControl.clearContent();
+        case type === 'youtube':
+            playerManagerStop(); 
+            imageControl.stopStream();
+            imageControl.clearImg();
+            youtubeControl.setVideoId(url)
+        break;
     }
 });
 
