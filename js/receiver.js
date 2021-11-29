@@ -19,7 +19,9 @@ let youtubeControl = (function() {
         var content = document.getElementById('iframe').contentWindow.document;
         content.body.innerHTML = "";  
     } 
-}) ();
+    
+    return self;
+})();
 
 let imageControl = (function() {
     let self = {};
