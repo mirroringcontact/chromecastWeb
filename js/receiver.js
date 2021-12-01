@@ -104,8 +104,7 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
         case type === 'stop':
             imageControl.stopStream();
             imageControl.clearImg();
-            playerManagerStop(); 
-        break;
+            playerManagerStop();  
     }
 });
 
