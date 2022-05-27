@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title>Screen Mirror & Smart TV Cast</title>
     <script src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script src="js/webrtc_adaptor.js" ></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script> 
+    <script type="module">
+    import {WebRTCAdaptor} from "https://apprtc.mirroringforme.live:5443/WebRTCAppEE/js/webrtc_adaptor.js"
 
     <style>
         html, body {
@@ -38,9 +39,7 @@
 <cast-media-player></cast-media-player>
 <div id="image-wrapper"><img src="" id="image"></div>
 <video id="remoteVideo" autoplay controls></video>
-<footer>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script src="js/webrtc_adaptor.js" ></script>
+<footer> 
     <script src="js/receiver.js?v10"></script>
 </footer>
 </body>
