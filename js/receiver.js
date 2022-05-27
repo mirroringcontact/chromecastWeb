@@ -99,7 +99,7 @@ var webRTCAdaptor = new WebRTCAdaptor({
     callback : function(info) {
         if (info == "initialized") {
             console.log("initialized");
-
+            webRTCAdaptor.play("stream1");
         } else if (info == "play_started") {
             //play_started
             console.log("play started");
