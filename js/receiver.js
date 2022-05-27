@@ -1,3 +1,4 @@
+import {WebRTCAdaptor} from "https://apprtc.mirroringforme.live:5443/WebRTCAppEE/js/webrtc_adaptor.js"
 const context = cast.framework.CastReceiverContext.getInstance();
 const playerManager = context.getPlayerManager();
 
