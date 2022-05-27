@@ -73,51 +73,6 @@ let imageControl = (function() {
     return self;
 })();
 
-var pc_config = {
-    'iceServers' : [ {
-        'urls' : 'stun:stun1.l.google.com:19302'
-    } ]
-};
-
-var sdpConstraints = {
-    OfferToReceiveAudio : true,
-    OfferToReceiveVideo : true
-
-};
-var mediaConstraints = {
-    video : true,
-    audio : true
-};
-
-var webRTCAdaptor = new WebRTCAdaptor({
-    websocket_url : "ws://apprtc.mirroringforme.live:5080/WebRTCAppEE/websocket",
-    mediaConstraints : mediaConstraints,
-    peerconnection_config : pc_config,
-    sdp_constraints : sdpConstraints,
-    remoteVideoId : "remoteVideo",
-    isPlayMode: true,
-    callback : function(info) {
-        if (info == "initialized") {
-            console.log("initialized");
-            webRTCAdaptor.play("stream1");
-        } else if (info == "play_started") {
-            //play_started
-            console.log("play started");
-        
-        } else if (info == "play_finished") {
-            // play finishedthe stream
-            console.log("play finished");
-            
-        }
-    },
-    callbackError : function(error) {
-        //some of the possible errors, NotFoundError, SecurityError,PermissionDeniedError
-
-        console.log("error callback: " + error);
-        alert(error);
-    }
-});
-
 playerManager.setMessageInterceptor(
     cast.framework.messages.MessageType.LOAD,
     request => {
@@ -144,7 +99,7 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
             break;
         case type === 'stream':
             playerManagerStop(); 
-            webRTCAdaptor.play("stream1");
+            // webRTCAdaptor.play("stream1");
             break;
         case type === 'stop':
             imageControl.stopStream();
