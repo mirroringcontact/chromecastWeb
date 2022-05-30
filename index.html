@@ -33,7 +33,7 @@
 </head>
 
 <body>
-    <cast-media-player></cast-media-player>
+<cast-media-player></cast-media-player>
 <div id="image-wrapper"><img src="" id="image"></div>
 <video id="remoteVideo" autoplay controls></video>
 
@@ -64,8 +64,7 @@
         isPlayMode: true,
         callback : function(info) {
             if (info == "initialized") {
-                console.log("initialized");
-                  // webRTCAdaptor.join("stream1");
+                console.log("initialized"); 
                   webRTCAdaptor.play("stream1");
             } else if (info == "play_started") {
                 //play_started
@@ -85,10 +84,10 @@
         }
     });
 
-</script> 
-<footer>
-    <script src="js/console.js"></script>
-    <script src="js/receiver-debug.js?v10"></script>
+</script>
+
+<footer> 
+    <script src="js/receiver.js?v10"></script>
 </footer>
 </body>
 </html>
