@@ -67,6 +67,7 @@
                 console.log("initialized"); 
                   webRTCAdaptor.join("stream1");
             } else if (info == "play_started")
+                var elem = document.getElementById("remoteVideo");
                 if (elem.requestFullscreen) {
                   elem.requestFullscreen();
                 } else if (elem.webkitRequestFullscreen) { /* Safari */
