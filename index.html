@@ -64,9 +64,10 @@
         isPlayMode: true,
         callback : function(info) {
             if (info == "initialized") {
-                console.log("initialized"); 
-                  webRTCAdaptor.join("stream1");
-            } else if (info == "play_started")
+                console.log("initialized");
+                  webRTCAdaptor.join("stream1"); 
+            } else if (info == "play_started") {
+                //play_started
                 console.log("play started");
             
             } else if (info == "play_finished") {
@@ -84,7 +85,6 @@
     });
 
 </script>
-
 <footer>  
     <!-- <script src="js/console.js"></script> -->
     <script src="js/receiver-debug.js?v10"></script>
