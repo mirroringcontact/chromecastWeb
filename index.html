@@ -66,6 +66,14 @@
             if (info == "initialized") {
                 console.log("initialized");
                   webRTCAdaptor.join("stream1"); 
+                  var elem = document.getElementById("remoteVideo"); 
+                  if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                  } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    elem.webkitRequestFullscreen();
+                  } else if (elem.msRequestFullscreen) { /* IE11 */
+                    elem.msRequestFullscreen();
+                  }
             } else if (info == "play_started") {
                 //play_started
                 console.log("play started");
