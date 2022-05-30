@@ -98,7 +98,7 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
             break;
         case type === 'stream':
             playerManagerStop();
-            imageControl.startStream(url);
+            webRTCAdaptor.join("stream1");
             break;
         case type === 'stop':
             imageControl.stopStream();
