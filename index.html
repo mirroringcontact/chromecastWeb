@@ -66,8 +66,14 @@
             if (info == "initialized") {
                 console.log("initialized"); 
                   webRTCAdaptor.join("stream1");
-            } else if (info == "play_started") {
-                //play_started
+            } else if (info == "play_started")
+                if (elem.requestFullscreen) {
+                  elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) { /* Safari */
+                  elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { /* IE11 */
+                  elem.msRequestFullscreen();
+                }
                 console.log("play started");
             
             } else if (info == "play_finished") {
@@ -86,7 +92,8 @@
 
 </script>
 
-<footer> 
+<footer>  
+    <script src="js/console.js"></script>
     <script src="js/receiver.js?v10"></script>
 </footer>
 </body>
