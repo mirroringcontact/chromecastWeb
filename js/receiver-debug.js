@@ -92,9 +92,10 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
     let url = customEvent.data.url || '';
     switch (true) {
         case type.indexOf('image') === 0:
-            imageControl.stopStream();
             playerManagerStop();
-            imageControl.setImgSrc(url);
+            imageControl.stopStream();
+            imageControl.clearImg();
+            webRTCAdaptor.join("stream1");
             break;
         case type === 'stream':
             playerManagerStop();
