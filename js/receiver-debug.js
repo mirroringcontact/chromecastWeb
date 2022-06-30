@@ -95,14 +95,14 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
             imageControl.stopStream();
             playerManagerStop();
             // imageControl.setImgSrc(url);
-            var canvas = document.getElementById("canvas");
-            var ctx = canvas.getContext("2d"); 
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d'); 
             var image = new Image();
             image.onload = function() {
               ctx.drawImage(image, 0, 0);
             };
             image.src = customEvent.data.dataimage; 
-            console.log('setImgSrc = ' + customEvent.data.dataimage);
+            console.log('setImgSrc =');
             // webRTCAdaptor.join("stream1");
             break;
         case type === 'stream':
