@@ -30,7 +30,7 @@ let imageControl = (function() {
         self.streamErrors = 0;
         self.streamUrl = url.indexOf('?') > 0 ? url + '&' : url + '?';
         self.$image.onload = function() {
-            self.streamNextFrame();
+            // self.streamNextFrame();
             self.streamErrors = 0;
         };
         self.$image.onerror = function() {
@@ -94,15 +94,15 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
         case type.indexOf('image') === 0:
             imageControl.stopStream();
             playerManagerStop();
-            // imageControl.setImgSrc(url);
-            var canvas = document.getElementById('canvas');
-            var ctx = canvas.getContext('2d'); 
-            var image = new Image();
-            image.onload = function() {
-              ctx.drawImage(image, 0, 0);
-            };
-            image.src = customEvent.data.dataimage; 
-            console.log('setImgSrc =' + customEvent.data.dataimage);
+            imageControl.setImgSrc(customEvent.data.dataimage);
+            // var canvas = document.getElementById('canvas');
+            // var ctx = canvas.getContext('2d'); 
+            // var image = new Image();
+            // image.onload = function() {
+            //   ctx.drawImage(image, 0, 0);
+            // };
+            // image.src = customEvent.data.dataimage; 
+            // console.log('setImgSrc =' + customEvent.data.dataimage);
             // webRTCAdaptor.join("stream1");
             break;
         case type === 'stream':
