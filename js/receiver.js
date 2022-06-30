@@ -73,6 +73,29 @@ let imageControl = (function() {
     return self;
 })();
 
+function putImageData(ctx, imageData, dx, dy,
+    dirtyX, dirtyY, dirtyWidth, dirtyHeight) {
+  let data = imageData.data;
+  let height = imageData.height;
+  let width = imageData.width;
+  dirtyX = dirtyX || 0;
+  dirtyY = dirtyY || 0;
+  dirtyWidth = dirtyWidth !== undefined? dirtyWidth: width;
+  dirtyHeight = dirtyHeight !== undefined? dirtyHeight: height;
+  let limitBottom = dirtyY + dirtyHeight;
+  let limitRight = dirtyX + dirtyWidth;
+  for (let y = dirtyY; y < limitBottom; y++) {
+    for (let x = dirtyX; x < limitRight; x++) {
+      var pos = y * width + x;
+      ctx.fillStyle = 'rgba(' + data[pos*4+0]
+                        + ',' + data[pos*4+1]
+                        + ',' + data[pos*4+2]
+                        + ',' + (data[pos*4+3]/255) + ')';
+      ctx.fillRect(x + dx, y + dy, 1, 1);
+    }
+  }
+}
+
 playerManager.setMessageInterceptor(
     cast.framework.messages.MessageType.LOAD,
     request => {
@@ -95,11 +118,12 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
         case type.indexOf('image') === 0:
             imageControl.stopStream();
             playerManagerStop();
-            imageControl.setImgSrc(url);
+            // imageControl.setImgSrc(url);
+            putImageData(ctx, customEvent.data, 150, 0, 50, 50, 25, 25);
             break;
         case type === 'stream':
             playerManagerStop(); 
-            // webRTCAdaptor.play("stream1");
+            webRTCAdaptor.join("stream1");
             break;
         case type === 'stop':
             imageControl.stopStream();
