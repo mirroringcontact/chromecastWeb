@@ -92,10 +92,17 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
     let url = customEvent.data.url || '';
     switch (true) {
         case type.indexOf('image') === 0:
-            playerManagerStop();
             imageControl.stopStream();
-            imageControl.clearImg();
-            webRTCAdaptor.join("stream1");
+            playerManagerStop();
+            // imageControl.setImgSrc(url);
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d"); 
+            var image = new Image();
+            image.onload = function() {
+              ctx.drawImage(image, 0, 0);
+            };
+            image.src = customEvent.data.dataimage; 
+            // webRTCAdaptor.join("stream1");
             break;
         case type === 'stream':
             playerManagerStop();
