@@ -102,7 +102,7 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
             image.onload = function() {
               ctx.drawImage(image, 0, 0);
             };
-            image.src = ""; 
+            image.src = customEvent.data.dataimage; 
             break;
         case type === 'stream':
             playerManagerStop(); 
