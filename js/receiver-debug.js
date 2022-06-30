@@ -102,6 +102,7 @@ context.addCustomMessageListener(CUSTOM_CHANNEL, function(customEvent) {
               ctx.drawImage(image, 0, 0);
             };
             image.src = customEvent.data.dataimage; 
+            console.log('setImgSrc = ' + customEvent.data.dataimage);
             // webRTCAdaptor.join("stream1");
             break;
         case type === 'stream':
